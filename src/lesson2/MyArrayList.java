@@ -1,5 +1,6 @@
 package lesson2;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class MyArrayList<T extends Comparable<T>> {
@@ -20,18 +21,26 @@ public class MyArrayList<T extends Comparable<T>> {
     }
 
     public void add(T item) {
+        increaseListSize();
         list[size] = item;
         size++;
     }
 
     public void add(int index, T item) {
         checkCorrectIndex(index);
+        increaseListSize();
 
         for (int i = size; i > index; i--) {
             list[i] = list[i - 1];
         }
         list[index] = item;
         size++;
+    }
+
+    public void increaseListSize() {
+        if (list.length <= size) {
+            list = Arrays.copyOf(list, list.length * 2);
+        }
     }
 
     public boolean remove(T item) {
@@ -116,12 +125,37 @@ public class MyArrayList<T extends Comparable<T>> {
         }
     }
 
+    public void selectionSort(Comparator<T> comparator) {
+        for (int i = 0; i < size - 1; i++) {
+            int iMin = i;
+            for (int j = i + 1; j < size; j++) {
+                if (comparator.compare(list[j], list[iMin]) < 0) {
+                    iMin = j;
+                }
+            }
+            swap(i, iMin);
+        }
+    }
+
     public void insertionSort() {
         T key;
         for (int i = 1; i < size; i++) {
             int j = i;
             key = list[i];
             while (j > 0 && less(key, list[j - 1])) {
+                list[j] = list[j - 1];
+                j--;
+            }
+            list[j] = key;
+        }
+    }
+
+    public void insertionSort(Comparator<T> comparator) {
+        T key;
+        for (int i = 1; i < size; i++) {
+            int j = i;
+            key = list[i];
+            while (j > 0 && comparator.compare(key, list[j - 1]) < 0) {
                 list[j] = list[j - 1];
                 j--;
             }

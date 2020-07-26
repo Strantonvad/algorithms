@@ -1,6 +1,8 @@
 package lesson2;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
@@ -64,22 +66,26 @@ public class Main {
 //        System.out.println(msal.binaryFind(4));
 
 
-//        MyArrayList<Integer> mal = new MyArrayList<>(15);
-//        Random rand = new Random();
-//        for (int i = 0; i <10 ; i++) {
-//            mal.add(rand.nextInt(20));
-//        }
+        MyArrayList<Integer> mal = new MyArrayList<>(100000);
+        Random rand = new Random();
+        for (int i = 0; i < 100000; i++) {
+            mal.add(rand.nextInt(10000));
+        }
 //        System.out.println(mal);
-//
-////        mal.selectionSort();
-////        mal.insertionSort();
-////        mal.bubbleSort(Comparator.naturalOrder());
+        long start = System.nanoTime();//System.currentTimeMillis();
+//        mal.selectionSort(); //11506ms
+//        mal.insertionSort(); //4405ms
+        mal.bubbleSort(); //31626ms
+        long time = System.nanoTime() - start;
+
+        System.out.println(TimeUnit.NANOSECONDS.toMillis(time) + "ms");
+//        mal.bubbleSort(Comparator.naturalOrder());
 //        mal.bubbleSort(Comparator.reverseOrder());
 //
 //        System.out.println(mal);
 
 
-        MyArrayList<String> myArrayList = new MyArrayList<>();
+        /*MyArrayList<String> myArrayList = new MyArrayList<>();
         myArrayList.add("aaa");
         myArrayList.add("BBB");
         myArrayList.add("bbbbbbb");
@@ -93,7 +99,7 @@ public class Main {
         myArrayList.bubbleSort(Comparator.comparingInt(String::length));
 //        myArrayList.bubbleSort(Comparator.comparingInt(String::length).reversed());
 //        myArrayList.bubbleSort(Comparator.comparingInt(String::length).thenComparing(String::compareToIgnoreCase));
-        System.out.println(myArrayList);
+        System.out.println(myArrayList);*/
     }
 
 }
