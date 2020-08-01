@@ -25,14 +25,20 @@ public class Main {
 //        mll.insert(1, "Sasha");
 //        System.out.println(mll);
 //
-        System.out.println(mll.delete("Bob"));
-        System.out.println(mll);
+//        System.out.println(mll.delete("Bob"));
+//        System.out.println(mll);
+//
+//
+//        for (String s : mll) {
+//            System.out.println(s);
+//        }
+        MyLinkedQueue<String> mlq = new MyLinkedQueue<>();
+        mlq.insert("Vasya");
+        mlq.insert("Roma");
 
-
-        for (String s : mll) {
-            System.out.println(s);
-        }
-
-
+        System.out.println(mlq.peek());
+        System.out.println(mlq.toString());
+        mlq.delete("Vasya");
+        System.out.println(mlq.peek());
     }
 }
