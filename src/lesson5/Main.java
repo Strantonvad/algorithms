@@ -11,8 +11,10 @@ public class Main {
 //        System.out.println(triangleNum(5));
 //        System.out.println(recTriangleNum(5));
 
-        System.out.println(multiply(3, 8));
-        System.out.println(recMultiply(3,8));
+//        System.out.println(multiply(3, 8));
+//        System.out.println(recMultiply(3,8));
+
+        System.out.println(recExponent(12, 9));
 
     }
 
@@ -81,5 +83,10 @@ public class Main {
         return recMultiply(a, b - 1) + a;
     }
 
-
+    public static long recExponent(int a, int b) {
+        if (b == 1) {
+            return a;
+        }
+        return recExponent(a, b - 1) * a;
+    }
 }
